@@ -1,14 +1,6 @@
 import axios from 'axios';
 import * as fs from 'fs';
-
-type pokemonPayload = {
-  name: string;
-  height: number;
-  weight: number;
-  id: number;
-  sprites: object;
-  types: [];
-};
+import { createPokemonPayload } from './utils/createPokemonPayload';
 
 //PROMISE ALL
 (async () => {
@@ -46,14 +38,3 @@ type pokemonPayload = {
 
   fs.writeFileSync('pokemon2.json', JSON.stringify(parsedPokemonList, null, 2));
 })();
-
-function createPokemonPayload(pokemon: any): pokemonPayload {
-  return {
-    id: pokemon.id,
-    name: pokemon.name,
-    height: pokemon.height,
-    weight: pokemon.weight,
-    types: pokemon.types,
-    sprites: pokemon.sprites.front_default,
-  };
-}
